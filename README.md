@@ -1,2 +1,2 @@
-# LaTeX-template
-Default LaTeX template for new projects.
+# cpp-course
+Programming course for the year 2015-2016.
