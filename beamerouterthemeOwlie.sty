@@ -1,0 +1,33 @@
+\mode<presentation>
+% Frame title
+\defbeamertemplate*{frametitle}{Owlie}[1][]{
+  \vspace{0.25cm}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm]{} 
+  \begin{tikzpicture}
+    \usebeamercolor{palette primary}
+    \useasboundingbox[fill=White](0,0) rectangle(\paperwidth,1.2);
+    \fill[color=fg,rounded corners=2ex] (-1,0) rectangle(2.95,1.2);
+    \fill[color=bg,rounded corners=2ex] (3.05,0) rectangle(1.2*\paperwidth,1.2);
+    \ifnum\insertframenumber>0
+      {
+	\node[anchor=center, color=bg, font=\large] at (1.475,0.61){\insertframenumber/\inserttotalframenumber};
+      }
+    \fi
+    \ifx\insertframesubtitle\@empty
+      {
+	\usebeamercolor{frametitle}
+	\node[anchor=west, color=fg, font=\large] at (3.2,0.61){\insertframetitle};
+      }
+    \else
+      {
+	\usebeamercolor{frametitle}
+	\node[anchor= west, color=fg, font=\large] at (3.2,0.81){\insertframetitle};
+	\usebeamercolor{framesubtitle}
+	\node[anchor= west, color=fg, font=\small] at (3.2,0.41){\insertframesubtitle};
+      }
+    \fi
+  \end{tikzpicture}
+  \end{beamercolorbox}
+}
+
+\mode<all>

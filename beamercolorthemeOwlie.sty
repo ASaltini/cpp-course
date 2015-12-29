@@ -1,0 +1,23 @@
+\mode<presentation>
+
+% Settings
+
+\setbeamercolor*{palette primary}{fg = BurntOrange, bg = MidnightBlue}
+\setbeamercolor*{palette secondary}{bg = BurntOrange, fg = MidnightBlue}
+\setbeamercolor*{palette tertiary}{fg = BurntOrange, bg = MidnightBlue}
+\setbeamercolor*{palette quaternary}{fg = BurntOrange, bg = MidnightBlue}
+\setbeamercolor*{structure}{fg = BurntOrange, bg = MidnightBlue}
+
+\setbeamercolor*{normal text}{fg = MidnightBlue, bg = White}
+\setbeamercolor*{alerted text}{fg = BrickRed}
+\setbeamercolor*{example text}{fg = Gray}
+
+\setbeamercolor{block title}{use=structure, fg = White, bg = structure.fg}
+\setbeamercolor{block title alerted}{use=alerted text, fg = White, bg = alerted text.fg}
+\setbeamercolor{block title example}{use=example text, fg = White, bg = example text.fg}
+
+\setbeamercolor{block body}{parent=normal text, use=block title, bg = block title.bg!25!bg}
+\setbeamercolor{block body alerted}{parent=normal text, use=block title alerted, bg=block title alerted.bg!25!bg}
+\setbeamercolor{block body example}{parent=normal text, use=block title example, bg=block title example.bg!25!bg}
+
+\mode<all>

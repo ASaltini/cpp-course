@@ -1,0 +1,33 @@
+\mode<presentation>
+
+\setbeamertemplate{background}{
+  \begin{tikzpicture}
+    \fill[color=White,opacity=1] (0,0) rectangle(\paperwidth,\paperheight);
+  \end{tikzpicture}
+}
+
+% Items
+\setbeamertemplate{items}[square]
+\setbeamertemplate{sections/subsections in toc}[square]
+
+% Title page
+\defbeamertemplate*{title page}{Owlie}[1][]{ 
+  \begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight]{} 
+  \begin{tikzpicture}
+    \usebeamercolor{palette primary}
+    \useasboundingbox (0,0) rectangle(\paperwidth,\paperheight);
+    \fill[color=fg, rounded corners=2ex] (-1,0.25) rectangle(2.95,1.9+0.25);
+    \fill[color=bg, rounded corners=2ex] (3.05,0.25) rectangle(1.2\paperwidth,1.9+0.25);
+    \usebeamercolor{title}
+    \node[color=fg, fill=bg, align=center, anchor=south, rounded corners, inner sep=0.5cm] at (\paperwidth/2,\paperheight/2){\LARGE\inserttitle};
+    \usebeamercolor{author}
+    \node[anchor=west, color=fg] at (3.2,1.9/2 + 0.35 + 0.25){\insertauthor};   
+    \usebeamercolor{date}
+    \node[anchor=center, color=fg] at (1.475,1.9/2 + 0.25){\insertdate}; 
+    \usebeamercolor{institute}
+    \node[anchor=west, color=fg] at (3.2,1.9/2 - 0.35 + 0.25){\insertinstitute};
+  \end{tikzpicture}
+  \end{beamercolorbox}
+}
+
+\mode<all>
