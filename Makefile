@@ -10,7 +10,6 @@ all: main
 
 main: $(subst .pdf,.tex,$(MAIN))
 	$(LATEXMK) $(MKFLAGS) $(subst .pdf,.tex,$(MAIN))
-	make clean
 
 clean:
 	$(LATEXMK) -c

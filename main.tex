@@ -44,5 +44,114 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{L'informatica}
+  \vfill
+  \begin{itemize}
+    \item L'informatica \alert{non} è
+    \begin{itemize}
+      \item saper usare un computer
+      \item saper costruire/riparare un computer
+      \item usare programmi scritti da altri
+    \end{itemize}
+    \vfill
+    \item L'informatica è
+    \begin{itemize}
+      \item una branca della matematica
+      \item lo studio dell'\alert{informazione}
+      \item lo studio degli \alert{algoritmi}
+      \item lo studio dei \alert{linguaggi di programmazione}
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}{L'informazione}
+  \vfill
+  \begin{itemize}
+    \item L'informazione si misura in \alert{bit} (\alert{bi}nary digi\alert{t})
+    \vfill
+    \item \SI{1}{\bit} è la quantità di informazione necessaria a determinare una
+    quantità che può essere \alert{0} o \alert{1}
+    \vfill
+    \item Il \alert{byte} è un multiplo del bit: \SI{1}{\byte} = \SI{8}{\bit}
+    \vfill
+    \item Due scale di multipli del byte:
+    \begin{itemize}
+      \item decimale: \si{\kilo\byte} (\(10^3\)), \si{\mega\byte} (\(10^6\)), \si{\giga\byte} (\(10^9\)), \si{\tera\byte} (\(10^{12}\)), \dots
+      \item \alert{binaria}: \si{\kibi\byte} (\(2^{10}\)), \si{\mebi\byte} (\(2^{20}\)), \si{\gibi\byte} (\(2^{30}\)), \si{\tebi\byte} (\(2^{40}\)), \dots
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}{Algebra Booleana}
+  \vfill
+  \begin{itemize}
+    \item L'algebra Booleana è l'algebra dei bit
+    \vfill
+    \item È un \alert{modello} della logica classica: 1 = vero, 0 = falso
+    \vfill
+    \item Insieme di base \(\mathcal{B} = \{ \; 0, 1 \; \}\)
+    \vfill
+    \item Tre operazioni fondamentali:
+    \begin{itemize}
+      \item \alert{not} (non): \(\lnot : \mathcal{B} \to \mathcal{B}\)
+      \item \alert{and} (et): \(\land : \mathcal{B}^2 \to \mathcal{B}\)
+      \item \alert{or} (vel): \(\lor : \mathcal{B}^2 \to \mathcal{B}\)
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}{Algebra Booleana}
+  \begin{itemize}
+      \item \alert{not} (non): \(\lnot\)
+      \begin{itemize}
+        \item \(\lnot 1 = 0\)
+        \item \(\lnot 0 = 1\)
+      \end{itemize}
+      \vfill
+      \item \alert{and} (et): \(\land\)
+      \begin{itemize}
+        \item \(1 \land 1 = 1\)
+        \item \(1 \land 0 = 0\)
+        \item \(0 \land 1 = 0\)
+        \item \(0 \land 1 = 0\)
+      \end{itemize}
+      \vfill
+      \item \alert{or} (vel): \(\lor\)
+      \begin{itemize}
+        \item \(1 \lor 1 = 1\)
+        \item \(1 \lor 0 = 1\)
+        \item \(0 \lor 1 = 1\)
+        \item \(0 \lor 1 = 0\)
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Algebra Booleana}
+  \vfill
+  \begin{itemize}
+    \item Combinando queste tre operazioni si possono ottenere tutte le altre
+    operazioni possibili
+    \vfill
+    \item In realtà basta \alert{una} sola operazione, meno intuitiva:
+    \begin{itemize}
+      \item nand (\(\uparrow\))
+      \item nor (\(\downarrow\))
+    \end{itemize}
+    \vfill
+    \item Esistono circuiti \alert{elettrici} che realizzano materialmente queste
+    operazioni logiche
+    \begin{itemize}
+      \item segnale ``alto'' = 1
+      \item segnale ``basso'' = 0
+    \end{itemize}
+    \vfill
+    \item Sono l'elemento di base dei computer
+  \end{itemize}
+  \vfill
+\end{frame}
+
 
 \end{document}
