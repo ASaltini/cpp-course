@@ -11,7 +11,7 @@
 \input{headers/default}
 \input{headers/si}
 % \input{headers/bibliography}
-% \input{headers/drawings}
+\input{headers/drawings}
 % \input{headers/fancy}
 
 \begin{document}
@@ -267,6 +267,35 @@
       \item bit del significando \(\Rightarrow\) precisione
       \item bit dell'esponente \(\Rightarrow\) range
     \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}{Architettura di von Neumann}
+  \vfill
+  \begin{center}\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+    \filldraw[fill=MidnightBlue!10!white] (0,0) rectangle (5,2);
+    \draw[dashed] (0,1) -- (5,1) (2.5,1) -- (2.5,2);
+    \filldraw[fill=MidnightBlue!10!white] (0,-2) rectangle ++(2,1);
+    \filldraw[fill=MidnightBlue!10!white] (3,-2) rectangle ++(2,1);
+    \path (2.5,0.5) node {Memoria}
+          (1.25,1.5) node {Dati}
+          (3.75,1.5) node {Programmi}
+          (1,-1.5) node {CU}
+          (4,-1.5) node {ALU};
+    \draw[stealth-stealth,very thick,shorten >=1pt,shorten <=1pt] (2,-1.5) -- (3,-1.5);
+    \draw[stealth-stealth,very thick,shorten >=1pt,shorten <=1pt] (1,-1) -- (1,0);
+    \draw[stealth-stealth,very thick,shorten >=1pt,shorten <=1pt] (4,-1) -- (4,0);
+  \end{tikzpicture}\end{center}
+  \vfill
+  \begin{itemize}
+    \item Memoria unica per dati e programmi
+    \vfill
+    \item CU (Control Unit): assegna e gestisce risorse
+    \vfill
+    \item ALU (Arithmetic Logic Unit): compie operazioni
+    \vfill
+    \item ALU + CU = CPU (Central Processing Unit)
   \end{itemize}
   \vfill
 \end{frame}
