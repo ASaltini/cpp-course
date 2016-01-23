@@ -608,6 +608,41 @@
 
 \begin{frame}{Flowcharts}
   \vfill
+  \begin{itemize}
+    \item Le regole elencate danno origine alla programmazione imperativa in senso lato
+    \vfill
+    \item Le frecce possono ``risalire'' il diagramma
+    \begin{itemize}
+      \item istruzioni \alert{goto}: ritorno ad un punto precedente
+    \end{itemize}
+    \vfill
+    \item Questo rende più difficile:
+    \begin{itemize}
+      \item studio formale del programma
+      \item apportare modifiche al codice
+      \item comprensione del programma da parte di terzi
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Flowcharts}
+  \vfill
+  \begin{itemize}
+    \item La programmazione \alert{strutturata} vieta i goto
+    \vfill
+    \item Le frecce non possono risalire il diagramma
+    \vfill
+    \item Viene aggiunto un nuovo simbolo
+    \vfill
+    \item Teorema di Böhm-Jacopini
+    \begin{itemize}
+      \item \alert{equivalenza} tra imperativa e strutturata
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Flowcharts}
+  \vfill
   \begin{center}\begin{tikzpicture}[node distance=15mm]
   \node[loop] (op) at (0,0) {condizione};
   \draw[arrow] (op) to node[left]{no} ++(0,-1);
@@ -616,10 +651,12 @@
   \end{tikzpicture}\end{center}
   \vfill
   \begin{itemize}
-    \item Loop
+    \item Istruzione di loop
     \vfill
-    \item Concettualmente identico all'istruzione condizionale, ma uno dei due flussi
-    può tornare indietro
+    \item Concettualmente identica all'istruzione condizionale, ma uno (ed uno solo)
+    dei due flussi può risalire
+    \vfill
+    \item Permette di ripetere una serie di istruzioni
   \end{itemize}
 \end{frame}
 
