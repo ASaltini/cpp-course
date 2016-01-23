@@ -153,5 +153,123 @@
   \vfill
 \end{frame}
 
+\begin{frame}{Rappresentazione decimale}
+  \vfill
+  \begin{itemize}
+    \item Un numero in rappresentazione \alert{decimale} è espresso come combinazione
+    di potenze di 10
+    \[\num{1064} = \num{1e3} + \num{0e2} + \num{6e1} + \num{4e0}\]
+    \item I coefficienti sono compresi tra 0 e 9 (\alert{minori} di 10)
+    \vfill
+    \item Il massimo numero con \(n\) cifre decimali è \(10^n - 1\)
+    \vfill
+    \item I numeri esistono indipendentemente dalla loro rappresentazione, è solo
+    un modo di scriverli
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}{Rappresentazione binaria}
+  \vfill
+  \begin{itemize}
+    \item La rappresentazione \alert{binaria} utilizza le potenze di 2
+    \[\num[group-digits = false]{10110} = \num[exponent-base = 2]{1e4} + \num[exponent-base = 2]{0e3}
+    + \num[exponent-base = 2]{1e2} + \num[exponent-base = 2]{1e1} + \num[exponent-base = 2]{0e0}\]
+    \item I coefficienti sono soltanto 0 e 1 (\alert{minori} di 2)
+    \vfill
+    \item Il massimo numero con \(n\) cifre binarie è \(2^n - 1\)
+    \vfill
+    \item Ogni cifra è rappresentabile da un \alert{bit}
+    \begin{itemize}
+      \item \(n\) cifre \(\Rightarrow\) \(n\) bit
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}{Rappresentazione binaria}
+  \vfill
+  \begin{itemize}
+    \item I computer memorizzano i numeri in binario
+    \vfill
+    \item Le operazioni tra essi vengono svolte da appositi circuiti, basati
+    sulle operazioni Booleane
+    \vfill
+    \item Ogni operazione richiede un certo tempo
+    \vfill
+    \item Limiti di memoria/tempo impediscono di operare con numeri arbitrariamente
+    grandi
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}{Rappresentazione binaria}
+  \vfill
+  \begin{itemize}
+    \item I numeri negativi devono memorizzare anche il segno
+    \vfill
+    \item Costo di \SI{1}{\bit} aggiuntivo
+    \begin{itemize}
+      \item \(s = 0 \Rightarrow +\)
+      \item \(s = 1 \Rightarrow -\)
+    \end{itemize}
+    \vfill
+    \item Spesso si ricorre a rappresentazioni alternative
+    \begin{itemize}
+      \item rimozione di ambiguità tra \(+0\) e \(-0\)
+      \item facilità di calcolo
+      \item occupano comunque \SI{1}{\bit} in più
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}{Rappresentazione binaria}
+  \vfill
+  \begin{itemize}
+    \item La parte frazionaria è problematica da rappresentare
+    \[\num[group-digits = false]{1.1011} = \num[exponent-base = 2]{1e0} + \num[exponent-base = 2]{1e-1}
+    + \num[exponent-base = 2]{0e-2} + \num[exponent-base = 2]{1e-3} + \num[exponent-base = 2]{1e-4}\]
+    \item Non tutti i numeri con rappresentazione decimale finità hanno rappresentazione
+    binaria finita
+    \vfill
+    \item Non possiamo memorizzare infinite cifre
+    \begin{itemize}
+      \item Impossibile rappresentare i numeri irrazionali
+      \item Non tutti i numeri razionali sono rappresentabili
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}{Rappresentazione binaria}
+  \vfill
+  \begin{itemize}
+    \item Richiamiamo la notazione scientifica
+    \[\num{1064.15} = \num{1.06415e3}\]
+    \item Generalizzabile in binario come
+    \[\num[group-digits = false]{110.1011} = \num[exponent-base = 2,group-digits = false]{1.101011e2}\]
+    \item La \alert{prima} cifra della rappresentazione scientifica binaria è \alert{sempre 1}, non serve memorizzarla
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}{Rappresentazione binaria}
+  \vfill
+    \[\num[group-digits = false]{110.1011} = \num[exponent-base = 2,group-digits = false]{1.101011e2}\]
+  \begin{itemize}
+    \item La parte dopo la virgola è detta \alert{mantissa} o \alert{significando}, è un numero intero
+    \vfill
+    \item L'\alert{esponente} di 2 è un numero intero
+    \vfill
+    \item Un numero frazionario viene rappresentato come coppia di numeri interi
+    \begin{itemize}
+      \item bit del significando \(\Rightarrow\) precisione
+      \item bit dell'esponente \(\Rightarrow\) range
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
 
 \end{document}

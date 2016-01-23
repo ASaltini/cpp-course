@@ -7,8 +7,10 @@
   math-ohm=\mathrm{\Omega},
   text-ohm={\ensuremath{\mathrm{\Omega}}},
   retain-explicit-plus=true,
+  retain-zero-exponent,
   binary-units=true
 ]{siunitx}
+\AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\rmfamily}}
 \DeclareSIUnit{\atp}{at.\percent}
 \DeclareSIUnit{\magn}{\ensuremath{\times}}
 \DeclareSIUnit{\rpm}{rpm}
