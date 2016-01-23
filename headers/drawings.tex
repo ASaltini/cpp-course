@@ -2,15 +2,129 @@
 \usetikzlibrary{
   positioning,
   shapes,
+  shapes.geometric,
+  shapes.symbols,
+  shapes.misc,
   shadows,
   arrows,
   fit,
   decorations,
   patterns,
-  mindmap
+  mindmap,
+  calc
 }
 
 \usepackage{readarray}
 \usepackage{ifthen}
 \usepackage{pgfplots}
 \usepackage{chemfig}
+
+\tikzset{
+    begin/.style={
+        draw,
+        rectangle,
+        rounded corners,
+        very thick,
+        draw=MidnightBlue!80!black,
+        fill=MidnightBlue!50
+    },
+    input/.style={ % requires library shapes.geometric
+        draw,
+        trapezium,
+        trapezium left angle=60,
+        trapezium right angle=120,
+        very thick,
+        draw=BrickRed!80!black,
+        fill=BrickRed!50
+    },
+    output/.style={ % requires library shapes.geometric
+        draw,
+        trapezium,
+        trapezium left angle=60,
+        trapezium right angle=120,
+        very thick,
+        draw=Fuchsia!80!black,
+        fill=Fuchsia!50
+    },
+    operation/.style={
+        draw,
+        rectangle,
+        very thick,
+        draw=BurntOrange,
+        fill=BurntOrange!50
+    },
+    loop/.style={ % requires library shapes.misc
+        draw,
+        chamfered rectangle,
+        chamfered rectangle xsep=2cm,
+        very thick,
+        draw=ForestGreen!80!black,
+        fill=ForestGreen!50
+    },
+    decision/.style={ % requires library shapes.geometric
+        draw,
+        diamond,
+        aspect=#1,
+        very thick,
+        draw=ForestGreen!80!black,
+        fill=ForestGreen!50
+    },
+    decision/.default=2,
+    print/.style={ % requires library shapes.symbols
+        draw,
+        tape,
+        tape bend top=none
+    },
+    connection/.style={
+        draw,
+        thick,
+        circle,
+        fill=MidnightBlue
+    },
+    process rectangle outer width/.initial=0.15cm,
+    predefined process/.style={
+        rectangle,
+        draw,
+        append after command={
+        \pgfextra{
+          \draw
+          ($(\tikzlastnode.north west)-(0,0.5\pgflinewidth)$)--
+          ($(\tikzlastnode.north west)-(\pgfkeysvalueof{/tikz/process rectangle outer width},0.5\pgflinewidth)$)--
+          ($(\tikzlastnode.south west)+(-\pgfkeysvalueof{/tikz/process rectangle outer width},+0.5\pgflinewidth)$)--
+          ($(\tikzlastnode.south west)+(0,0.5\pgflinewidth)$);
+          \draw
+          ($(\tikzlastnode.north east)-(0,0.5\pgflinewidth)$)--
+          ($(\tikzlastnode.north east)+(\pgfkeysvalueof{/tikz/process rectangle outer width},-0.5\pgflinewidth)$)--
+          ($(\tikzlastnode.south east)+(\pgfkeysvalueof{/tikz/process rectangle outer width},0.5\pgflinewidth)$)--
+          ($(\tikzlastnode.south east)+(0,0.5\pgflinewidth)$);
+        }
+        },
+        text width=#1,
+        align=center
+    },
+    predefined process/.default=1.75cm,
+    man op/.style={ % requires library shapes.geometric
+        draw,
+        trapezium,
+        shape border rotate=180,
+        text width=2cm,
+        align=center,
+    },
+    extract/.style={
+        draw,
+        isosceles triangle,
+        isosceles triangle apex angle=60,
+        shape border rotate=90
+    },
+    merge/.style={
+        draw,
+        isosceles triangle,
+        isosceles triangle apex angle=60,
+        shape border rotate=-90
+    },
+    arrow/.style={
+        thick,
+        ->,
+        >=stealth
+    },
+}
