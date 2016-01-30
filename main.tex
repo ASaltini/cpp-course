@@ -711,15 +711,6 @@
 
 \begin{frame}[fragile]{Hello, World!}
   \vfill
-  \begin{lstlisting}
-#include <iostream>
-
-int main() {
-  std::cout << "Hello, World!" << std::endl;
-  return 0;
-}
-  \end{lstlisting}
-  \vfill
   \begin{center}\begin{tikzpicture}[node distance=15mm]
     \node[begin] (start) {\textbf{BEGIN}};
     \node[below of=start,output](init){\textbf{WRITE} "Hello, World!"};
@@ -728,6 +719,15 @@ int main() {
     \draw[arrow] (start) to (init);
     \draw[arrow] (init) to (end);
   \end{tikzpicture}\end{center}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+
+int main() {
+  std::cout << "Hello, World!" << std::endl;
+  return 0;
+}
+  \end{lstlisting}
   \vfill
 \end{frame}
 
@@ -1697,6 +1697,117 @@ int main() {
       \lstinline$&&$ & and \\
       \lstinline$||$ & or \\
     \end{tabular}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{While}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a;
+  std::cin >> a;
+  while(a % 2 == 0){
+    a /= 2;
+    cout << a << endl;
+  }
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6},node distance=13mm]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,input] (read) {\textbf{READ} \(a\)};
+      \node[below of=read,connection] (conn) {};
+      \node[below right = 3mm and 8mm of conn,output] (write) {\textbf{WRITE} \(a\)};
+      \node[below of=write,operation](decr){\(a = a \div 2\)};
+      \node[below = 18 mm of conn,loop](loop){\(a \in \mathcal{P}\)};
+      \node[below = 6mm of loop,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (read);
+      \draw[arrow] (read) to (conn);
+      \draw[arrow] (conn) to (loop);
+      \draw[arrow] (decr) to (write);
+      \draw[arrow] (write) |- (conn);
+      \draw[arrow] (loop) to node[anchor=east]{no} (end);
+      \draw[arrow] (loop) -| node[below]{sì} (decr);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{While}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a;
+  std::cin >> a;
+  do {
+    a /= 2;
+    cout << a << endl;
+  } while(a % 2 == 0);
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6},node distance=13mm]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,input] (read) {\textbf{READ} \(a\)};
+      \node[below of=read,connection] (conn) {};
+      \node[below of=conn,operation](decr){\(a = a \div 2\)};
+      \node[below of=decr,output] (write) {\textbf{WRITE} \(a\)};
+      \node[below of=write,loop](loop){\(a \in \mathcal{P}\)};
+      \node[below = 6mm of loop,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (read);
+      \draw[arrow] (read) to (conn);
+      \draw[arrow] (conn) to (decr);
+      \draw[arrow] (decr) to (write);
+      \draw[arrow] (write) to (loop);
+      \draw[arrow] (loop) to node[anchor=east]{no} (end);
+      \draw[arrow] (loop) to node[anchor=north]{sì} ++(20mm,0) |- (conn);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{While}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$while (condizione) { ... }$
+    \begin{itemize}
+      \item ripete il blocco finché la condizione è vera
+      \item se la condizione è inizialmente falsa, non entra
+    \end{itemize}
+    \vfill
+    \item \lstinline$do { ... } while (condizione);$
+    \begin{itemize}
+      \item ripete il blocco finché la condizione è vera
+      \item il blocco viene eseguito \alert{almeno} una volta
+    \end{itemize}
+    \vfill
+    \item L'\alert{iterazione} è alla base della programmazione
+    \begin{itemize}
+      \item sfruttare il computer per fare operazioni ripetitive
+    \end{itemize}
   \end{itemize}
   \vfill
 \end{frame}
