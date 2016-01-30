@@ -1625,7 +1625,7 @@ using std::endl;
 int main() {
   int a;
   std::cin >> a;
-  if (a == 0) {
+  if(a == 0) {
     cout << 0 << endl;
   } else {
     cout << 1 << endl;
@@ -1661,7 +1661,7 @@ int main() {
 \begin{frame}[fragile]{Condizionale}
   \vfill
   \begin{itemize}
-    \item \lstinline$if (condizione) { ... } else { ... }$
+    \item \lstinline$if(condizione) { ... } else { ... }$
     \begin{itemize}
       \item il primo blocco viene eseguito se la condizione è vera
       \item il secondo blocco viene eseguito se è falsa
@@ -1701,7 +1701,7 @@ int main() {
   \vfill
 \end{frame}
 
-\begin{frame}[fragile]{While}
+\begin{frame}[fragile]{Ciclo while}
   \vfill
   \begin{columns}[c]
     \column{.45\textwidth}
@@ -1745,7 +1745,7 @@ int main() {
   \vfill
 \end{frame}
 
-\begin{frame}[fragile]{While}
+\begin{frame}[fragile]{Ciclo while}
   \vfill
   \begin{columns}[c]
     \column{.45\textwidth}
@@ -1789,16 +1789,16 @@ int main() {
   \vfill
 \end{frame}
 
-\begin{frame}[fragile]{While}
+\begin{frame}[fragile]{Ciclo while}
   \vfill
   \begin{itemize}
-    \item \lstinline$while (condizione) { ... }$
+    \item \lstinline$while(condizione) { ... }$
     \begin{itemize}
       \item ripete il blocco finché la condizione è vera
       \item se la condizione è inizialmente falsa, non entra
     \end{itemize}
     \vfill
-    \item \lstinline$do { ... } while (condizione);$
+    \item \lstinline$do { ... } while(condizione);$
     \begin{itemize}
       \item ripete il blocco finché la condizione è vera
       \item il blocco viene eseguito \alert{almeno} una volta
@@ -1808,6 +1808,130 @@ int main() {
     \begin{itemize}
       \item sfruttare il computer per fare operazioni ripetitive
     \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Ciclo for}
+  \vfill
+  \begin{columns}[c]
+    \column{.6\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int i = 0;
+  while(i < 10){
+    cout << i << endl;
+    i++;
+  }
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.3\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6},node distance=13mm]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation] (read) {\(i = 0\)};
+      \node[below of=read,connection] (conn) {};
+      \node[below right = 3mm and 8mm of conn,operation] (write) {\(i = i + 1\)};
+      \node[below of=write,output](decr){\textbf{WRITE} \(i\)};
+      \node[below = 18 mm of conn,loop](loop){\(i < 10\)};
+      \node[below = 6mm of loop,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (read);
+      \draw[arrow] (read) to (conn);
+      \draw[arrow] (conn) to (loop);
+      \draw[arrow] (decr) to (write);
+      \draw[arrow] (write) |- (conn);
+      \draw[arrow] (loop) to node[anchor=east]{no} (end);
+      \draw[arrow] (loop) -| node[below]{sì} (decr);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Ciclo for}
+  \vfill
+  \begin{columns}[c]
+    \column{.6\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  for(int i = 0; i < 10; i++){
+    cout << i << endl;
+  }
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.3\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6},node distance=13mm]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation] (read) {\(i = 0\)};
+      \node[below of=read,connection] (conn) {};
+      \node[below right = 3mm and 8mm of conn,operation] (write) {\(i = i + 1\)};
+      \node[below of=write,output](decr){\textbf{WRITE} \(i\)};
+      \node[below = 18 mm of conn,loop](loop){\(i < 10\)};
+      \node[below = 6mm of loop,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (read);
+      \draw[arrow] (read) to (conn);
+      \draw[arrow] (conn) to (loop);
+      \draw[arrow] (decr) to (write);
+      \draw[arrow] (write) |- (conn);
+      \draw[arrow] (loop) to node[anchor=east]{no} (end);
+      \draw[arrow] (loop) -| node[below]{sì} (decr);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Ciclo while}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$for(iniziale;condizione;incremento) { ... }$
+    \begin{itemize}
+      \item esegue il comando iniziale
+      \item ripete il blocco finché la condizione è vera
+      \item al termine di ogni iterazione esegue l'incremento
+    \end{itemize}
+    \vfill
+    \item Utile nel caso sia noto a priori il numero di ripetizioni che un ciclo deve compiere
+  \end{itemize}
+  \vfill
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Ciclo for}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  for(int i = 0; i < 10; i++){
+    i *= 2;
+    cout << i << endl;
+  }
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Cattiva abitudine: cambiare l'indice dentro al ciclo
+    \vfill
+    \item Cambiare la struttura del ciclo o usare un while
   \end{itemize}
   \vfill
 \end{frame}
