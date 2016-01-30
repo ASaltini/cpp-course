@@ -851,11 +851,11 @@ int main() {
   \end{lstlisting}
   \vfill
   \begin{itemize}
-    \item importa \alert{tutte} le funzioni del namespace std
+    \item Importa \alert{tutte} le funzioni del namespace std
     \vfill
-    \item comodo per non scrivere \lstinline$std::$ ogni volta
+    \item Comodo per non scrivere \lstinline$std::$ ogni volta
     \vfill
-    \item cattiva abitudine, molto rischioso
+    \item Cattiva abitudine, molto rischioso
   \end{itemize}
   \vfill
 \end{frame}
@@ -874,9 +874,9 @@ int main() {
   \end{lstlisting}
   \vfill
   \begin{itemize}
-    \item importa soltanto le funzioni che richiediamo
+    \item Importa soltanto le funzioni che richiediamo
     \vfill
-    \item più sicuro che importare l'intero namespace
+    \item Più sicuro che importare l'intero namespace
   \end{itemize}
   \vfill
 \end{frame}
@@ -1228,7 +1228,7 @@ int main() {
   \end{columns}
   \vfill
   \begin{itemize}
-    \item Variabili dello stesso tipo possono essere dichiarate in un unica istruzione,
+    \item Variabili dello stesso tipo possono essere dichiarate in un'unica istruzione,
     separate da virgole
   \end{itemize}
   \vfill
@@ -1272,6 +1272,155 @@ int main() {
   \vfill
   \begin{itemize}
     \item Inizializzazione in sede di dichiarazione
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a = 5, b;
+  b = a++;
+  cout << a << endl;
+  cout << b << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.5, every node/.style={scale=0.5}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op1){\(a = 5\)};
+      \node[below of=op1,operation](op2){\(b = a\)};
+      \node[below of=op2,operation](op3){\(a = a + 1\)};
+      \node[below of=op3,output](out1){\textbf{WRITE} \(a\)};
+      \node[below of=out1,output](out2){\textbf{WRITE} \(b\)};
+      \node[below of=out2,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op1);
+      \draw[arrow] (op1) to (op2);
+      \draw[arrow] (op2) to (op3);
+      \draw[arrow] (op3) to (out1);
+      \draw[arrow] (out1) to (out2);
+      \draw[arrow] (out2) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$a++$ operatore di \alert{post-incremento}
+    \vfill
+    \item \lstinline$a--$ operatore di \alert{post-decremento}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a = 5, b;
+  b = ++a;
+  cout << a << endl;
+  cout << b << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.5, every node/.style={scale=0.5}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op1){\(a = 5\)};
+      \node[below of=op1,operation](op2){\(a = a + 1\)};
+      \node[below of=op2,operation](op3){\(b = a\)};
+      \node[below of=op3,output](out1){\textbf{WRITE} \(a\)};
+      \node[below of=out1,output](out2){\textbf{WRITE} \(b\)};
+      \node[below of=out2,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op1);
+      \draw[arrow] (op1) to (op2);
+      \draw[arrow] (op2) to (op3);
+      \draw[arrow] (op3) to (out1);
+      \draw[arrow] (out1) to (out2);
+      \draw[arrow] (out2) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$++a$ operatore di \alert{pre-incremento}
+    \vfill
+    \item \lstinline$--a$ operatore di \alert{pre-decremento}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{itemize}
+    \item Tipi di variabile:
+    \begin{itemize}
+      \item numeri interi
+      \begin{itemize}
+          \item \lstinline$short$
+          \item \lstinline$int$
+          \item \lstinline$long$
+          \item \lstinline$long long$
+      \end{itemize}
+        \item numeri interi
+        \begin{itemize}
+            \item \lstinline$float$
+            \item \lstinline$double$
+            \item \lstinline$long double$
+        \end{itemize}
+      \item booleano (0/1)
+      \begin{itemize}
+        \item \lstinline$bool$
+      \end{itemize}
+      \item carattere
+      \begin{itemize}
+        \item \lstinline$char$
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+#include <limits>
+using std::cout;
+using std::endl;
+int main() {
+  cout << std::numeric_limits<int>::max() << endl;
+  cout << std::numeric_limits<int>::min() << endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item La dimensione dei tipi non è standard
+    \vfill
+    \item Ogni compilatore può avere dimensioni diverse
+    \vfill
+    \item È bene verificare i limiti del proprio compilatore
   \end{itemize}
   \vfill
 \end{frame}
