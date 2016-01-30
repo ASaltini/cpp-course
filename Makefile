@@ -13,11 +13,11 @@ main: $(subst .pdf,.tex,$(MAIN))
 
 clean:
 	$(LATEXMK) -c
-	$(RM) *.run.xml *.bbl *.nav *.snm
+	$(RM) *.run.xml *.bbl *.nav *.snm *.vrb
 
 dist-clean:
 	$(LATEXMK) -C
-	$(RM) *.run.xml *.bbl *.nav *.snm
+	$(RM) *.run.xml *.bbl *.nav *.snm *.vrb
 
 # $@ name of the target
 # $< first dependency of a rule
