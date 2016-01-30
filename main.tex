@@ -598,8 +598,8 @@
 
     \draw[arrow] (start) to (in);
     \draw[arrow] (in) to (dec);
-    \draw[arrow] (dec) -| (dispari);
-    \draw[arrow] (dec) -| (pari);
+    \draw[arrow] (dec) -| node[above] {no} (dispari);
+    \draw[arrow] (dec) -| node[above] {sì} (pari);
     \draw[arrow] (dispari) |- (conn);
     \draw[arrow] (pari) |- (conn);
     \draw[arrow] (conn) to (end);
@@ -744,6 +744,8 @@ int main() {
       \item tramite IDE (ambiente di sviluppo)
       \item \lstinline$g++ -std=c++14 source.cpp -o target$
     \end{itemize}
+    \vfill
+    \item Per progetti più ampi conviene creare un \alert{Makefile}
   \end{itemize}
   \vfill
 \end{frame}
@@ -1149,14 +1151,14 @@ int main() {
 \begin{frame}[fragile]{Variabili}
   \vfill
   \begin{itemize}
-    \item Operazioni:
-    \begin{center}\begin{tabular}{cll}
+    \item Operazioni:\\[.5em]
+    \hspace{5mm}\begin{tabular}{cll}
       \lstinline$+$ & somma & \lstinline$5 + 3 = 8$ \\
       \lstinline$-$ & sottrazione & \lstinline$5 - 3 = 2$ \\
       \lstinline$*$ & moltiplicazione & \lstinline$5 * 3 = 15$ \\
       \lstinline$/$ & divisione & \lstinline$5 / 3 = 1$ \\
       \lstinline!%! & resto & \lstinline!5 % 3 = 2! \\
-    \end{tabular}\end{center}
+    \end{tabular}
   \end{itemize}
   \vfill
 \end{frame}
@@ -1509,9 +1511,8 @@ int main() {
   \vfill
   \begin{lstlisting}
 #include <iostream>
-using std::endl;
 int main() {
-  std::cerr << "Errore!" << endl;
+  std::cerr << "Errore!" << std::endl;
   return 1;
 }
   \end{lstlisting}
@@ -1528,11 +1529,10 @@ int main() {
   \vfill
   \begin{lstlisting}
 #include <fstream>
-using std::endl;
 int main() {
   std::ofstream fout;
   fout.open("prova.txt");
-  fout << "Hello, World!" << endl;
+  fout << "Hello, World!" << std::endl;
   fout.close();
   return 0;
 }
@@ -1553,11 +1553,10 @@ int main() {
   \vfill
   \begin{lstlisting}
 #include <fstream>
-using std::endl;
 int main() {
   std::ofstream fout;
   fout.open("prova.txt");
-  fout << "Hello, World!" << endl;
+  fout << "Hello, World!" << std::endl;
   fout.close();
   return 0;
 }
@@ -1577,10 +1576,9 @@ int main() {
   \vfill
   \begin{lstlisting}
 #include <fstream>
-using std::endl;
 int main() {
   std::ofstream fout("prova.txt");
-  fout << "Hello, World!" << endl;
+  fout << "Hello, World!" << std::endl;
   fout.close();
   return 0;
 }
@@ -1588,6 +1586,117 @@ int main() {
   \vfill
   \begin{itemize}
     \item L'apertura del file può essere fatta nella dichiarazione
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+#include <fstream>
+int main() {
+  int a;
+  std::ifstream fin("dati.txt");
+  fin >> a;
+  fin.close();
+  std::cout << a << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$std::ifstream$ per i file di input
+    \vfill
+    \item L'operatore \lstinline$>>$ estrae il primo dato nel file
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Condizionale}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a;
+  std::cin >> a;
+  if (a == 0) {
+    cout << 0 << endl;
+  } else {
+    cout << 1 << endl;
+  }
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[scale=0.5, every node/.style={scale=0.5},node distance=15mm]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,input](in){\textbf{READ} \(a\)};
+      \node[below of=in,decision](dec){\(a = 0\)};
+      \node[below right = 3mm and 8mm of dec,output](pari){\textbf{WRITE} 0};
+      \node[below left = 3mm and 8mm of dec,output](dispari){\textbf{WRITE} 1};
+      \node[below = 8mm of dec,connection](conn){};
+      \node[below of=conn,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (in);
+      \draw[arrow] (in) to (dec);
+      \draw[arrow] (dec) -| node[above] {no} (dispari);
+      \draw[arrow] (dec) -| node[above] {sì} (pari);
+      \draw[arrow] (dispari) |- (conn);
+      \draw[arrow] (pari) |- (conn);
+      \draw[arrow] (conn) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Condizionale}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$if (condizione) { ... } else { ... }$
+    \begin{itemize}
+      \item il primo blocco viene eseguito se la condizione è vera
+      \item il secondo blocco viene eseguito se è falsa
+    \end{itemize}
+    \vfill
+    \item La condizione deve avere un valore di tipo \lstinline$bool$
+    \begin{itemize}
+      \item spesso risulta da operatori di \alert{confronto}
+      \item può contenere espressioni composte
+    \end{itemize}
+    \vfill
+    \item La direttiva \lstinline$else$ può essere omessa
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Condizionale}
+  \vfill
+  \begin{itemize}
+    \item Operatori di confronto:\\[.5em]
+    \hspace{5mm}\begin{tabular}{cl}
+      \lstinline$==$ & uguale \\
+      \lstinline$!=$ & diverso \\
+      \lstinline$>$ & maggiore \\
+      \lstinline$>=$ & maggiore o uguale \\
+      \lstinline$<$ & minore \\
+      \lstinline$<=$ & minore o uguale \\
+    \end{tabular}
+    \vfill
+    \item Operatori logici:\\[.5em]
+    \hspace{5mm}\begin{tabular}{cl}
+      \lstinline$!$ & not \\
+      \lstinline$&&$ & and \\
+      \lstinline$||$ & or \\
+    \end{tabular}
   \end{itemize}
   \vfill
 \end{frame}
