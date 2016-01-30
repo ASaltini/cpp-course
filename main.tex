@@ -12,6 +12,7 @@
 \input{headers/si}
 % \input{headers/bibliography}
 \input{headers/drawings}
+\input{headers/code}
 % \input{headers/fancy}
 
 \begin{document}
@@ -706,6 +707,18 @@
   \draw[arrow] (write) to (end);
   \end{tikzpicture}\end{center}
   \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Hello World}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+
+int main() {
+  std::cout << "Hello, World!" << std::endl;
+  return 0;
+}
+  \end{lstlisting}
 \end{frame}
 
 
