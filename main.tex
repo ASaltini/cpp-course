@@ -733,6 +733,23 @@ int main() {
 
 \begin{frame}[fragile]{Hello, World!}
   \vfill
+  \begin{itemize}
+    \item Il codice sorgente viene scritto in un file di testo
+    \begin{itemize}
+      \item estensioni standard \lstinline$*.cpp$ o \lstinline$*.cc$ o \lstinline$*.C$
+    \end{itemize}
+    \vfill
+    \item La compilazione può avvenire in due modi
+    \begin{itemize}
+      \item tramite IDE (ambiente di sviluppo)
+      \item \lstinline$g++ -std=c++14 source.cpp -o target$
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Hello, World!}
+  \vfill
   \begin{lstlisting}
 #include <iostream>
 
@@ -776,7 +793,7 @@ int main() {
       \item tutte nel \alert{namespace} \lstinline$std$
     \end{itemize}
     \vfill
-    \item \lstinline$iostream$ contiene:
+    \item \lstinline$<iostream>$ contiene:
     \begin{itemize}
       \item \lstinline$std::cout$ necessaria per scrivere a schermo
       \item \lstinline$std::endl$ inserisce un'interruzione di riga
@@ -1425,5 +1442,154 @@ int main() {
   \vfill
 \end{frame}
 
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{lstlisting}
+int main() {
+  const int a = 5;
+  a = 4;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item La parola \lstinline$const$ impedisce di cambiare una variabile
+    \vfill
+    \item Il valore deve essere impostato nella dichiarazione
+    \vfill
+    \item Utile per evitare di cambiare accidentalmente quantità che devono restare fisse
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a;
+  std::cin >> a;
+  a += 2;
+  cout << a << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,input](in){\textbf{READ} \(a\)};
+      \node[below of=in,operation](op){\(a = a+2\)};
+      \node[below of=op,output](out){\textbf{WRITE} \(a\)};
+      \node[below of=out,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (in);
+      \draw[arrow] (in) to (op);
+      \draw[arrow] (op) to (out);
+      \draw[arrow] (out) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$std::cin$ è il flusso di input standard
+    \vfill
+    \item \lstinline$>>$ è l'operatore di \alert{estrazione}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+using std::endl;
+int main() {
+  std::cerr << "Errore!" << endl;
+  return 1;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$std::cerr$ è il flusso su cui comunicare gli errori
+    \vfill
+    \item Viene gestito diversamente dal sistema operativo
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{lstlisting}
+#include <fstream>
+using std::endl;
+int main() {
+  std::ofstream fout;
+  fout.open("prova.txt");
+  fout << "Hello, World!" << endl;
+  fout.close();
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$<fstream>$ permette di fare input/output su file
+    \vfill
+    \item \lstinline$std::ofstream$ è un tipo di variabile
+    \begin{itemize}
+      \item \lstinline$fout$ è il nome della variabile
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{lstlisting}
+#include <fstream>
+using std::endl;
+int main() {
+  std::ofstream fout;
+  fout.open("prova.txt");
+  fout << "Hello, World!" << endl;
+  fout.close();
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$fout.open("prova.txt")$ apre il file \lstinline$prova.txt$
+    \vfill
+    \item La scrittura avviene come per \lstinline$cout$
+    \vfill
+    \item \lstinline$fout.close()$ chiude il file
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{lstlisting}
+#include <fstream>
+using std::endl;
+int main() {
+  std::ofstream fout("prova.txt");
+  fout << "Hello, World!" << endl;
+  fout.close();
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item L'apertura del file può essere fatta nella dichiarazione
+  \end{itemize}
+  \vfill
+\end{frame}
 
 \end{document}
