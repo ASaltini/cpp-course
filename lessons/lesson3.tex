@@ -23,6 +23,31 @@ int main(){
   \vfill
 \end{frame}
 
+\begin{frame}[fragile]{Typedef}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+typedef unsigned int uint;
+int main(){
+  uint a = 6;
+  std::cout << a << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$typedef$ definisce un nuovo tipo
+    \begin{itemize}
+      \item abbrevia la scrittura
+      \item modifica flessibile su programmi lunghi
+    \end{itemize}
+    \vfill
+    \item Alcuni compilatori definiscono già \lstinline$uint$, ma è consigliabile
+    ridefinirlo con un typedef per portabilità
+  \end{itemize}
+  \vfill
+\end{frame}
+
 \begin{frame}[fragile]{Casting}
   \vfill
   \begin{lstlisting}
@@ -68,28 +93,248 @@ int main(){
   \vfill
 \end{frame}
 
-\begin{frame}[fragile]{Typedef}
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{itemize}
+    \item Matematica: \(f : A \to B\)
+    \begin{itemize}
+      \item \(A\) dominio
+      \item \(B\) codominio
+      \item associa ciascun elemento di \(A\) ad un elemento di \(B\)
+    \end{itemize}
+    \vfill
+    \item Funzioni a più input: \(f : A_1 \times A_2 \to B\)
+    \begin{itemize}
+      \item coppia di valori da \(A_1\) e \(A_2\) come input
+      \item più in generale, n-ple di valori
+    \end{itemize}
+    \vfill
+    \item Informatica: \alert{tipi} prendono il posto degli insiemi
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{itemize}
+    \item Funzioni \alert{pure}
+    \begin{itemize}
+      \item non modificano i valori di input
+      \item il valore di output dipende \alert{solo} dai valori di input
+      \item non producono lettura/scrittura a schermo
+    \end{itemize}
+    \vfill
+    \item Funzioni \alert{impure}
+    \begin{itemize}
+      \item possono modificare gli input
+      \item possono utilizzare valori casuali, date, ore
+      \item possono leggere o scrivere a schermo
+    \end{itemize}
+    \vfill
+    \item La sintassi del \CC\ non le distingue
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
   \vfill
   \begin{lstlisting}
 #include <iostream>
-typedef unsigned int uint;
-int main(){
-  uint a = 6;
+int twice(int x) {
+  return 2*x;
+}
+int main() {
+  int a = 3;
+  std::cout << twice(a) << std::endl;
   std::cout << a << std::endl;
   return 0;
 }
   \end{lstlisting}
   \vfill
   \begin{itemize}
-    \item \lstinline$typedef$ definisce un nuovo tipo
+    \item \(\text{\lstinline$twice$} : \text{\lstinline$int$} \to \text{\lstinline$int$} :: x \mapsto 2x\)
+    \item \(\text{\lstinline$main$} : \text{\lstinline$void$} \to \text{\lstinline$int$}\)
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{lstlisting}[firstnumber=2]
+int twice(int x) {
+  return 2*x;
+}\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \alert{Definizione} della funzione
     \begin{itemize}
-      \item abbrevia la scrittura
-      \item modifica flessibile su programmi lunghi
+      \item il primo \lstinline$int$ è il tipo di output
+      \item segue il nome della funzione
+      \item l'\lstinline$int$ tra parentesi è il tipo di input
+      \item \lstinline$x$ indica il nome della variabile
+      \item il blocco \lstinline${ ... }$ è l'\alert{implementazione}
+    \end{itemize}
+  \end{itemize}
+    \vfill
+    \begin{lstlisting}[firstnumber=7]
+  std::cout << twice(a) << std::endl;\end{lstlisting}
+    \vfill
+    \begin{itemize}
+      \item \alert{Chiamata} alla funzione
+    \end{itemize}
+      \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+int pow(int x, int y) {
+  int z = 1;
+  for(int i = 0; i < y; i++) z *= x;
+  return z;
+}
+int main() {
+  std::cout << pow(2,3) << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \(\text{\lstinline$pow$} : \text{\lstinline$int$} \times \text{\lstinline$int$} \to \text{\lstinline$int$} :: (x,y) \mapsto x^y\)
+    \vfill
+    \item Funzione a due input
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+int two() { return 2; }
+int main() {
+  std::cout << two() << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \(\text{\lstinline$two$} : \text{\lstinline$void$} \to \text{\lstinline$int$} :: 2\)
+    \vfill
+    \item Funzione senza input
+    \vfill
+    \item Chiamata con \lstinline$two()$
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+int twice(int);
+int main() {
+  int a = 3;
+  std::cout << twice(a) << std::endl;
+  std::cout << a << std::endl;
+  return 0;
+}
+int twice(int x) { return 2*x; }
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$int twice(int);$ è la \alert{dichiarazione}
+    \vfill
+    \item \lstinline$int twice(int x) { return 2*x; }$ è la \alert{definizione}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{itemize}
+    \item La dichiarazione dice che esiste una funzione
+    \begin{itemize}
+      \item deve precedere il primo utilizzo della funzione
+      \item buona occasione per commentare
     \end{itemize}
     \vfill
-    \item Alcuni compilatori definiscono già \lstinline$uint$, ma è consigliabile
-    ridefinirlo con un typedef per portabilità
+    \item La definizione implementa la funzione
+    \begin{itemize}
+      \item senza di dichiarazione deve precedere il primo utilizzo
+    \end{itemize}
+    \vfill
+    \item Separarle è una buona abitudine
   \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+int fibonacci(int);
+int main() {
+  std::cout << fibonacci(8) << std::endl;
+  return 0;
+}
+int fibonacci(int n) {
+  int f;
+  if (n == 0) f = 0;
+  else  if (n == 1) f = 1;
+        else f = fibonacci(n-1) + fibonacci(n-2);
+  return f;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Funzione \alert{ricorsiva}: chiama sé stessa
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+void swap(int,int)
+int main() {
+  int a = 1, b = 0;
+  std::cout << a << " " << b << std::endl;
+  swap(a,b);
+  std::cout << a << " " << b << std::endl;
+  return 0;
+}
+void swap(int x, int y) {
+  int z = x;
+  x = y;
+  y = z;
+  return;
+}
+  \end{lstlisting}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+void swap(int&,int&)
+int main() {
+  int a = 1, b = 0;
+  std::cout << a << " " << b << std::endl;
+  swap(a,b);
+  std::cout << a << " " << b << std::endl;
+  return 0;
+}
+void swap(int& x, int& y) {
+  int z = x;
+  x = y;
+  y = z;
+  return;
+}
+  \end{lstlisting}
   \vfill
 \end{frame}
 
