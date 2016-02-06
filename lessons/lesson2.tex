@@ -1,0 +1,1226 @@
+\begin{frame}[fragile]{Hello, World!}
+  \vfill
+  \begin{center}\begin{tikzpicture}[node distance=15mm]
+    \node[begin] (start) {\textbf{BEGIN}};
+    \node[below of=start,output](init){\textbf{WRITE} "Hello, World!"};
+    \node[below of=init,begin](end){\textbf{END}};
+
+    \draw[arrow] (start) to (init);
+    \draw[arrow] (init) to (end);
+  \end{tikzpicture}\end{center}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+
+int main() {
+  std::cout << "Hello, World!" << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Hello, World!}
+  \vfill
+  \begin{itemize}
+    \item Il codice sorgente viene scritto in un file di testo
+    \begin{itemize}
+      \item estensioni standard \lstinline$*.cpp$ o \lstinline$*.cc$ o \lstinline$*.C$
+    \end{itemize}
+    \vfill
+    \item La compilazione può avvenire in due modi
+    \begin{itemize}
+      \item tramite IDE (ambiente di sviluppo)
+      \item \lstinline$g++ -std=c++14 source.cpp -o target$
+    \end{itemize}
+    \vfill
+    \item Per progetti più ampi conviene creare un \alert{Makefile}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Hello, World!}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+
+int main() {
+  std::cout << "Hello, World!" << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$#$ introduce direttive del preprocessore
+    \vfill
+    \item \lstinline$int main()$ è la parte principale del programma
+    \vfill
+    \item \lstinline${ ... }$ raggruppa più istruzioni in un singolo blocco
+    \vfill
+    \item ogni istruzione termina con un \lstinline$;$
+    \vfill
+    \item ogni programma deve terminare con \lstinline$return 0;$
+    \vfill
+    \item l'ultima riga di un file deve sempre essere vuota
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Hello, World!}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+
+int main() {
+  std::cout << "Hello, World!" << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$#include <...>$ inserisce un \alert{header} nel programma
+    \begin{itemize}
+      \item funzioni di libreria (C++ Standard Library)
+      \item tutte nel \alert{namespace} \lstinline$std$
+    \end{itemize}
+    \vfill
+    \item \lstinline$<iostream>$ contiene:
+    \begin{itemize}
+      \item \lstinline$std::cout$ necessaria per scrivere a schermo
+      \item \lstinline$std::endl$ inserisce un'interruzione di riga
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Hello, World!}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+
+int main() {
+  std::cout << "Hello, World!" << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item C++ gestisce l'output tramite \alert{stream} (flussi)
+    \begin{itemize}
+      \item \lstinline$std::cout$ è il flusso di output standard
+      \item \lstinline$<<$ è l'operatore di \alert{inserimento}
+      \item \lstinline$std::endl$ è un \alert{manipolatore}
+    \end{itemize}
+    \vfill
+    \item \lstinline$"Hello, World!"$ è una \alert{stringa}
+    \begin{itemize}
+      \item delimitate da \alert{virgolette}
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Hello, World!}
+  \vfill
+  \begin{lstlisting}
+//Questo è il mio primo programma in C++
+#include <iostream>
+
+int main() {
+  std::cout << "Hello, World!" << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item le righe introdotte da \lstinline$//$ sono \alert{commenti}
+    \vfill
+    \item commentare è una buona abitudine
+    \begin{itemize}
+      \item aiuta a ricordare cosa fa il programma
+      \item aiuta altri a capire cosa fa il programma
+    \end{itemize}
+    \vfill
+    \item altro modo di creare commenti: \lstinline$/* ... */$
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Hello, World!}
+  \vfill
+  \begin{lstlisting}
+//Questo è il mio primo programma in C++
+#include <iostream>
+using namespace std;
+int main() {
+  cout << "Hello, World!" << endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Importa \alert{tutte} le funzioni del namespace std
+    \vfill
+    \item Comodo per non scrivere \lstinline$std::$ ogni volta
+    \vfill
+    \item Cattiva abitudine, molto rischioso
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Hello, World!}
+  \vfill
+  \begin{lstlisting}
+//Questo è il mio primo programma in C++
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  cout << "Hello, World!" << endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Importa soltanto le funzioni che richiediamo
+    \vfill
+    \item Più sicuro che importare l'intero namespace
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a;
+  a = 5;
+  cout << a << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op){\(a = 5\)};
+      \node[below of=op,output](out){\textbf{WRITE} \(a\)};
+      \node[below of=out,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op);
+      \draw[arrow] (op) to (out);
+      \draw[arrow] (out) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$int a;$ \alert{dichiara} la variabile \lstinline$a$ di \alert{tipo} \lstinline$int$
+    \vfill
+    \item \lstinline$a = 5;$ \alert{assegna} il valore \lstinline$5$ alla variabile \lstinline$a$
+    \begin{itemize}
+      \item la prima assegnazione è detta \alert{inizializzazione}
+      \item \alert{mai} utilizzare una variabile non inizializzata
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int a;
+int main() {
+  a = 5;
+  cout << a << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op){\(a = 5\)};
+      \node[below of=op,output](out){\textbf{WRITE} \(a\)};
+      \node[below of=out,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op);
+      \draw[arrow] (op) to (out);
+      \draw[arrow] (out) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item Dichiarazione all'esterno di \lstinline$main()$
+    \vfill
+    \item Variabile \alert{globale}
+    \vfill
+    \item Ammesso, ma fortemente sconsigliato
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a = 5;
+  cout << a << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op){\(a = 5\)};
+      \node[below of=op,output](out){\textbf{WRITE} \(a\)};
+      \node[below of=out,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op);
+      \draw[arrow] (op) to (out);
+      \draw[arrow] (out) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item Inizializzazione in sede di dichiarazione
+    \vfill
+    \item Buona abitudine
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a;
+  a = 5 + 2;
+  cout << a << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op){\(a = 5 + 2\)};
+      \node[below of=op,output](out){\textbf{WRITE} \(a\)};
+      \node[below of=out,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op);
+      \draw[arrow] (op) to (out);
+      \draw[arrow] (out) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item È possibile compiere operazioni
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a = 5;
+  a = a + 2;
+  cout << a << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op1){\(a = 5\)};
+      \node[below of=op1,operation](op2){\(a = a + 2\)};
+      \node[below of=op2,output](out){\textbf{WRITE} \(a\)};
+      \node[below of=out,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op1);
+      \draw[arrow] (op1) to (op2);
+      \draw[arrow] (op2) to (out);
+      \draw[arrow] (out) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item Utilizzo del valore di una variabile in un'operazione:
+    \begin{itemize}
+      \item leggo il valore di \lstinline$a$
+      \item sommo \lstinline$2$ al valore letto
+      \item metto il risultato in \lstinline$a$
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a = 5;
+  a += 2;
+  cout << a << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op1){\(a = 5\)};
+      \node[below of=op1,operation](op2){\(a = a + 2\)};
+      \node[below of=op2,output](out){\textbf{WRITE} \(a\)};
+      \node[below of=out,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op1);
+      \draw[arrow] (op1) to (op2);
+      \draw[arrow] (op2) to (out);
+      \draw[arrow] (out) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item Forma più compatta della scrittura precedente
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{itemize}
+    \item Operazioni:\\[.5em]
+    \hspace{5mm}\begin{tabular}{cll}
+      \lstinline$+$ & somma & \lstinline$5 + 3 = 8$ \\
+      \lstinline$-$ & sottrazione & \lstinline$5 - 3 = 2$ \\
+      \lstinline$*$ & moltiplicazione & \lstinline$5 * 3 = 15$ \\
+      \lstinline$/$ & divisione & \lstinline$5 / 3 = 1$ \\
+      \lstinline!%! & resto & \lstinline!5 % 3 = 2! \\
+    \end{tabular}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a;
+  int b;
+  a = 5;
+  b = 3;
+  cout << a << endl;
+  cout << b << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op1){\(a = 5\)};
+      \node[below of=op1,operation](op2){\(b = 3\)};
+      \node[below of=op2,output](out1){\textbf{WRITE} \(a\)};
+      \node[below of=out1,output](out2){\textbf{WRITE} \(b\)};
+      \node[below of=out2,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op1);
+      \draw[arrow] (op1) to (op2);
+      \draw[arrow] (op2) to (out1);
+      \draw[arrow] (out1) to (out2);
+      \draw[arrow] (out2) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item Posso dichiarare più variabili
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a, b;
+  a = 5;
+  b = 3;
+  cout << a << endl;
+  cout << b << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op1){\(a = 5\)};
+      \node[below of=op1,operation](op2){\(b = 3\)};
+      \node[below of=op2,output](out1){\textbf{WRITE} \(a\)};
+      \node[below of=out1,output](out2){\textbf{WRITE} \(b\)};
+      \node[below of=out2,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op1);
+      \draw[arrow] (op1) to (op2);
+      \draw[arrow] (op2) to (out1);
+      \draw[arrow] (out1) to (out2);
+      \draw[arrow] (out2) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item Variabili dello stesso tipo possono essere dichiarate in un'unica istruzione,
+    separate da virgole
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a = 5, b = 3;
+  cout << a << endl;
+  cout << b << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op1){\(a = 5\)};
+      \node[below of=op1,operation](op2){\(b = 3\)};
+      \node[below of=op2,output](out1){\textbf{WRITE} \(a\)};
+      \node[below of=out1,output](out2){\textbf{WRITE} \(b\)};
+      \node[below of=out2,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op1);
+      \draw[arrow] (op1) to (op2);
+      \draw[arrow] (op2) to (out1);
+      \draw[arrow] (out1) to (out2);
+      \draw[arrow] (out2) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item Inizializzazione in sede di dichiarazione
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a = 5, b;
+  b = a++;
+  cout << a << endl;
+  cout << b << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.5, every node/.style={scale=0.5}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op1){\(a = 5\)};
+      \node[below of=op1,operation](op2){\(b = a\)};
+      \node[below of=op2,operation](op3){\(a = a + 1\)};
+      \node[below of=op3,output](out1){\textbf{WRITE} \(a\)};
+      \node[below of=out1,output](out2){\textbf{WRITE} \(b\)};
+      \node[below of=out2,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op1);
+      \draw[arrow] (op1) to (op2);
+      \draw[arrow] (op2) to (op3);
+      \draw[arrow] (op3) to (out1);
+      \draw[arrow] (out1) to (out2);
+      \draw[arrow] (out2) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$a++$ operatore di \alert{post-incremento}
+    \vfill
+    \item \lstinline$a--$ operatore di \alert{post-decremento}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a = 5, b;
+  b = ++a;
+  cout << a << endl;
+  cout << b << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.5, every node/.style={scale=0.5}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op1){\(a = 5\)};
+      \node[below of=op1,operation](op2){\(a = a + 1\)};
+      \node[below of=op2,operation](op3){\(b = a\)};
+      \node[below of=op3,output](out1){\textbf{WRITE} \(a\)};
+      \node[below of=out1,output](out2){\textbf{WRITE} \(b\)};
+      \node[below of=out2,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op1);
+      \draw[arrow] (op1) to (op2);
+      \draw[arrow] (op2) to (op3);
+      \draw[arrow] (op3) to (out1);
+      \draw[arrow] (out1) to (out2);
+      \draw[arrow] (out2) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$++a$ operatore di \alert{pre-incremento}
+    \vfill
+    \item \lstinline$--a$ operatore di \alert{pre-decremento}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{itemize}
+    \item Tipi di variabile:
+    \begin{itemize}
+      \item numeri interi
+      \begin{itemize}
+          \item \lstinline$short$
+          \item \lstinline$int$
+          \item \lstinline$long$
+          \item \lstinline$long long$
+      \end{itemize}
+        \item numeri razionali
+        \begin{itemize}
+            \item \lstinline$float$
+            \item \lstinline$double$
+            \item \lstinline$long double$
+        \end{itemize}
+      \item booleano (0/1)
+      \begin{itemize}
+        \item \lstinline$bool$
+      \end{itemize}
+      \item carattere
+      \begin{itemize}
+        \item \lstinline$char$
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+#include <limits>
+using std::cout;
+using std::endl;
+int main() {
+  cout << std::numeric_limits<int>::max() << endl;
+  cout << std::numeric_limits<int>::min() << endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item La dimensione dei tipi non è standard
+    \vfill
+    \item Ogni compilatore può avere dimensioni diverse
+    \vfill
+    \item È bene verificare i limiti del proprio compilatore
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{lstlisting}
+int main() {
+  const int a = 5;
+  a = 4;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item La parola \lstinline$const$ impedisce di cambiare una variabile
+    \vfill
+    \item Il valore deve essere impostato nella dichiarazione
+    \vfill
+    \item Utile per evitare di cambiare accidentalmente quantità che devono restare fisse
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a;
+  std::cin >> a;
+  a += 2;
+  cout << a << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,input](in){\textbf{READ} \(a\)};
+      \node[below of=in,operation](op){\(a = a+2\)};
+      \node[below of=op,output](out){\textbf{WRITE} \(a\)};
+      \node[below of=out,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (in);
+      \draw[arrow] (in) to (op);
+      \draw[arrow] (op) to (out);
+      \draw[arrow] (out) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$std::cin$ è il flusso di input standard
+    \vfill
+    \item \lstinline$>>$ è l'operatore di \alert{estrazione}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+int main() {
+  std::cerr << "Errore!" << std::endl;
+  return 1;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$std::cerr$ è il flusso su cui comunicare gli errori
+    \vfill
+    \item Viene gestito diversamente dal sistema operativo
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{lstlisting}
+#include <fstream>
+int main() {
+  std::ofstream fout;
+  fout.open("prova.txt");
+  fout << "Hello, World!" << std::endl;
+  fout.close();
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$<fstream>$ permette di fare input/output su file
+    \vfill
+    \item \lstinline$std::ofstream$ è un tipo di variabile
+    \begin{itemize}
+      \item \lstinline$fout$ è il nome della variabile
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{lstlisting}
+#include <fstream>
+int main() {
+  std::ofstream fout;
+  fout.open("prova.txt");
+  fout << "Hello, World!" << std::endl;
+  fout.close();
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$fout.open("prova.txt")$ apre il file \lstinline$prova.txt$
+    \vfill
+    \item La scrittura avviene come per \lstinline$cout$
+    \vfill
+    \item \lstinline$fout.close()$ chiude il file
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{lstlisting}
+#include <fstream>
+int main() {
+  std::ofstream fout("prova.txt");
+  fout << "Hello, World!" << std::endl;
+  fout.close();
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item L'apertura del file può essere fatta nella dichiarazione
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Input/Output}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+#include <fstream>
+int main() {
+  int a;
+  std::ifstream fin("dati.txt");
+  fin >> a;
+  fin.close();
+  std::cout << a << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$std::ifstream$ per i file di input
+    \vfill
+    \item L'operatore \lstinline$>>$ estrae il primo dato nel file
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Condizionale}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a;
+  std::cin >> a;
+  if(a == 0) {
+    cout << 0 << endl;
+  } else {
+    cout << 1 << endl;
+  }
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[scale=0.5, every node/.style={scale=0.5},node distance=15mm]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,input](in){\textbf{READ} \(a\)};
+      \node[below of=in,decision](dec){\(a = 0\)};
+      \node[below right = 3mm and 8mm of dec,output](pari){\textbf{WRITE} 0};
+      \node[below left = 3mm and 8mm of dec,output](dispari){\textbf{WRITE} 1};
+      \node[below = 8mm of dec,connection](conn){};
+      \node[below of=conn,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (in);
+      \draw[arrow] (in) to (dec);
+      \draw[arrow] (dec) -| node[above] {no} (dispari);
+      \draw[arrow] (dec) -| node[above] {sì} (pari);
+      \draw[arrow] (dispari) |- (conn);
+      \draw[arrow] (pari) |- (conn);
+      \draw[arrow] (conn) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Condizionale}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$if(condizione) { ... } else { ... }$
+    \begin{itemize}
+      \item il primo blocco viene eseguito se la condizione è vera
+      \item il secondo blocco viene eseguito se è falsa
+    \end{itemize}
+    \vfill
+    \item La condizione deve avere un valore di tipo \lstinline$bool$
+    \begin{itemize}
+      \item spesso risulta da operatori di \alert{confronto}
+      \item può contenere espressioni composte
+    \end{itemize}
+    \vfill
+    \item La direttiva \lstinline$else$ può essere omessa
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Condizionale}
+  \vfill
+  \begin{itemize}
+    \item Operatori di confronto:\\[.5em]
+    \hspace{5mm}\begin{tabular}{cl}
+      \lstinline$==$ & uguale \\
+      \lstinline$!=$ & diverso \\
+      \lstinline$>$ & maggiore \\
+      \lstinline$>=$ & maggiore o uguale \\
+      \lstinline$<$ & minore \\
+      \lstinline$<=$ & minore o uguale \\
+    \end{tabular}
+    \vfill
+    \item Operatori logici:\\[.5em]
+    \hspace{5mm}\begin{tabular}{cl}
+      \lstinline$!$ & not \\
+      \lstinline$&&$ & and \\
+      \lstinline$||$ & or \\
+    \end{tabular}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Ciclo while}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a;
+  std::cin >> a;
+  while(a % 2 == 0){
+    a /= 2;
+    cout << a << endl;
+  }
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6},node distance=13mm]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,input] (read) {\textbf{READ} \(a\)};
+      \node[below of=read,connection] (conn) {};
+      \node[below right = 3mm and 8mm of conn,output] (write) {\textbf{WRITE} \(a\)};
+      \node[below of=write,operation](decr){\(a = a \div 2\)};
+      \node[below = 18 mm of conn,loop](loop){\(a \in \mathcal{P}\)};
+      \node[below = 6mm of loop,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (read);
+      \draw[arrow] (read) to (conn);
+      \draw[arrow] (conn) to (loop);
+      \draw[arrow] (decr) to (write);
+      \draw[arrow] (write) |- (conn);
+      \draw[arrow] (loop) to node[anchor=east]{no} (end);
+      \draw[arrow] (loop) -| node[below]{sì} (decr);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Ciclo while}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int a;
+  std::cin >> a;
+  do {
+    a /= 2;
+    cout << a << endl;
+  } while(a % 2 == 0);
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6},node distance=13mm]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,input] (read) {\textbf{READ} \(a\)};
+      \node[below of=read,connection] (conn) {};
+      \node[below of=conn,operation](decr){\(a = a \div 2\)};
+      \node[below of=decr,output] (write) {\textbf{WRITE} \(a\)};
+      \node[below of=write,loop](loop){\(a \in \mathcal{P}\)};
+      \node[below = 6mm of loop,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (read);
+      \draw[arrow] (read) to (conn);
+      \draw[arrow] (conn) to (decr);
+      \draw[arrow] (decr) to (write);
+      \draw[arrow] (write) to (loop);
+      \draw[arrow] (loop) to node[anchor=east]{no} (end);
+      \draw[arrow] (loop) to node[anchor=north]{sì} ++(20mm,0) |- (conn);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Ciclo while}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$while(condizione) { ... }$
+    \begin{itemize}
+      \item ripete il blocco finché la condizione è vera
+      \item se la condizione è inizialmente falsa, non entra
+    \end{itemize}
+    \vfill
+    \item \lstinline$do { ... } while(condizione);$
+    \begin{itemize}
+      \item ripete il blocco finché la condizione è vera
+      \item il blocco viene eseguito \alert{almeno} una volta
+    \end{itemize}
+    \vfill
+    \item L'\alert{iterazione} è alla base della programmazione
+    \begin{itemize}
+      \item sfruttare il computer per fare operazioni ripetitive
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Ciclo for}
+  \vfill
+  \begin{columns}[c]
+    \column{.6\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  int i = 0;
+  while(i < 10){
+    cout << i << endl;
+    i++;
+  }
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.3\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6},node distance=13mm]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation] (read) {\(i = 0\)};
+      \node[below of=read,connection] (conn) {};
+      \node[below right = 3mm and 8mm of conn,operation] (write) {\(i = i + 1\)};
+      \node[below of=write,output](decr){\textbf{WRITE} \(i\)};
+      \node[below = 18 mm of conn,loop](loop){\(i < 10\)};
+      \node[below = 6mm of loop,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (read);
+      \draw[arrow] (read) to (conn);
+      \draw[arrow] (conn) to (loop);
+      \draw[arrow] (decr) to (write);
+      \draw[arrow] (write) |- (conn);
+      \draw[arrow] (loop) to node[anchor=east]{no} (end);
+      \draw[arrow] (loop) -| node[below]{sì} (decr);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Ciclo for}
+  \vfill
+  \begin{columns}[c]
+    \column{.6\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  for(int i = 0; i < 10; i++){
+    cout << i << endl;
+  }
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.3\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6},node distance=13mm]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation] (read) {\(i = 0\)};
+      \node[below of=read,connection] (conn) {};
+      \node[below right = 3mm and 8mm of conn,operation] (write) {\(i = i + 1\)};
+      \node[below of=write,output](decr){\textbf{WRITE} \(i\)};
+      \node[below = 18 mm of conn,loop](loop){\(i < 10\)};
+      \node[below = 6mm of loop,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (read);
+      \draw[arrow] (read) to (conn);
+      \draw[arrow] (conn) to (loop);
+      \draw[arrow] (decr) to (write);
+      \draw[arrow] (write) |- (conn);
+      \draw[arrow] (loop) to node[anchor=east]{no} (end);
+      \draw[arrow] (loop) -| node[below]{sì} (decr);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Ciclo while}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$for(iniziale;condizione;incremento) { ... }$
+    \begin{itemize}
+      \item esegue il comando iniziale
+      \item ripete il blocco finché la condizione è vera
+      \item al termine di ogni iterazione esegue l'incremento
+    \end{itemize}
+    \vfill
+    \item Utile nel caso sia noto a priori il numero di ripetizioni che un ciclo deve compiere
+  \end{itemize}
+  \vfill
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Ciclo for}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
+  for(int i = 0; i < 10; i++){
+    i *= 2;
+    cout << i << endl;
+  }
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Cattiva abitudine: cambiare l'indice dentro al ciclo
+    \vfill
+    \item Cambiare la struttura del ciclo o usare un while
+  \end{itemize}
+  \vfill
+\end{frame}
