@@ -1,1 +1,119 @@
+\begin{frame}[fragile]{Signed/Unsigned}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+int main(){
+  signed int a = -50;
+  unsigned int b = -50;
+  std::cout << a << std::endl;
+  std::cout << b << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$unsigned$ è un tipo di intero senza segno
+    \begin{itemize}
+      \item range doppio, bit del segno usato per le cifre
+      \item comportamento inatteso con numeri negativi
+    \end{itemize}
+    \vfill
+    \item \lstinline$signed$ è generalmente sottointeso
+  \end{itemize}
+  \vfill
+\end{frame}
 
+\begin{frame}[fragile]{Casting}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+int main(){
+  char a = 'A';
+  std::cout << a << std::endl;
+  std::cout << static_cast<int>(a) << std::endl;
+  std::cout << dynamic_cast<int>(a) << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Conversione di dati da un tipo ad un altro
+    \begin{itemize}
+      \item \lstinline$static_cast$: più sicuro, più veloce
+      \item \lstinline$dynamic_cast$: più flessibile
+      \item differenze irrisorie sui tipi standard
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Casting}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+int main(){
+  char a = 'A';
+  std::cout << a << std::endl;
+  std::cout << (int) a << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Legacy C-style cast: \lstinline$(int) a$
+    \begin{itemize}
+      \item sconsigliato, comportamento inaffidabile
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Typedef}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+typedef unsigned int uint;
+int main(){
+  uint a = 6;
+  std::cout << a << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$typedef$ definisce un nuovo tipo
+    \begin{itemize}
+      \item abbrevia la scrittura
+      \item modifica flessibile su programmi lunghi
+    \end{itemize}
+    \vfill
+    \item Alcuni compilatori definiscono già \lstinline$uint$, ma è consigliabile
+    ridefinirlo con un typedef per portabilità
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Un problema pratico}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+int main(){
+  signed char a = 26;
+  a += 5;
+  std::cout << static_cast<int>(a) << std::endl;
+  a -= 42;
+  std::cout << static_cast<int>(a) << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$signed/unsigned char$ come intero
+    \begin{itemize}
+      \item minor utilizzo di memoria
+      \item maggior tempo di calcolo (su macchine moderne)
+      \item no input diretto (serve variabile di appoggio)
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
