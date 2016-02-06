@@ -411,11 +411,11 @@ int main(){
   \vfill
   \begin{lstlisting}
 #include <iostream>
-typedef signed char sshort;
-std::istream &operator>>(std::istream&,sshort&);
-std::ostream &operator<<(std::ostream&,sshort&);
+typedef signed char schar;
+std::istream& operator>>(std::istream&,schar&);
+std::ostream& operator<<(std::ostream&,schar&);
 int main(){
-  sshort a;
+  schar a;
   std::cin >> a;
   a += 5;
   std::cout << a << std::endl;
@@ -435,18 +435,76 @@ int main(){
   \vfill
   \begin{lstlisting}[firstnumber=11]
 ...
-std::istream &operator>>(std::istream& input,
-                         sshort& x) {
+std::istream& operator>>(std::istream& input,
+                         schar& x) {
   int y;
   input >> y;
   x = y;
   return input;
 }
-std::ostream &operator<<(std::ostream& output,
-                         sshort& x) {
+std::ostream& operator<<(std::ostream& output,
+                         schar& x) {
   output << static_cast<int>(x);
   return output;
 }
   \end{lstlisting}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Strutture}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+struct frutto {
+  int m;    //massa
+  double p; //prezzo
+};
+int main(){
+  frutto mela;
+  mela.m = 250;
+  mela.p = 0.28;
+  std::cout << 1e3*mela.p/mela.m << std::endl;
+  return 0;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$struct$ crea un nuovo tipo che contiene più variabili
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{itemize}
+    \item In OOP si creano \alert{oggetti}
+    \begin{itemize}
+      \item variabili membro
+      \item funzioni membro
+    \end{itemize}
+    \vfill
+    \item Una \alert{classe} definisce un \alert{tipo} di oggetto
+    \vfill
+    \item L'oggetto vero e proprio è una variabile
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Strutture}
+  \vfill
+  \begin{lstlisting}[firstnumber=2]
+class Rettangolo {
+  private:
+    int b, h;
+  public:
+    Rettangolo(int,int);
+    int area();
+    void draw();
+};
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$struct$ crea un nuovo tipo che contiene più variabili
+  \end{itemize}
   \vfill
 \end{frame}

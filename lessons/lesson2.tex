@@ -324,6 +324,43 @@ int main() {
 using std::cout;
 using std::endl;
 int main() {
+  int a(5);
+  cout << a << endl;
+  return 0;
+}
+    \end{lstlisting}
+    \vfill
+    \column{.45\textwidth}
+    \vfill
+    \begin{center}\begin{tikzpicture}[node distance=15mm, scale=0.6, every node/.style={scale=0.6}]
+      \node[begin] (start) {\textbf{BEGIN}};
+      \node[below of=start,operation](op){\(a = 5\)};
+      \node[below of=op,output](out){\textbf{WRITE} \(a\)};
+      \node[below of=out,begin](end){\textbf{END}};
+
+      \draw[arrow] (start) to (op);
+      \draw[arrow] (op) to (out);
+      \draw[arrow] (out) to (end);
+    \end{tikzpicture}\end{center}
+    \vfill
+  \end{columns}
+  \vfill
+  \begin{itemize}
+    \item Sintassi alternativa: \alert{costruttore}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Variabili}
+  \vfill
+  \begin{columns}[c]
+    \column{.45\textwidth}
+    \vfill
+    \begin{lstlisting}
+#include <iostream>
+using std::cout;
+using std::endl;
+int main() {
   int a;
   a = 5 + 2;
   cout << a << endl;
