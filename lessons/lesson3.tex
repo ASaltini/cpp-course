@@ -244,7 +244,7 @@ int twice(int x) { return 2*x; }
   \end{lstlisting}
   \vfill
   \begin{itemize}
-    \item \lstinline$int twice(int);$ è la \alert{dichiarazione}
+    \item \lstinline$int twice(int);$ è la \alert{dichiarazione} o \alert{prototipo}
     \vfill
     \item \lstinline$int twice(int x) { return 2*x; }$ è la \alert{definizione}
   \end{itemize}
@@ -290,6 +290,50 @@ int fibonacci(int n) {
   \vfill
   \begin{itemize}
     \item Funzione \alert{ricorsiva}: chiama sé stessa
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+void hello(int);
+int main() {
+  hello(5);
+  return 0;
+}
+void hello(int x) {
+  for(int i = 0; i < x; i++) {
+    std::cout << "Hello, World!" << std::endl;
+  }
+  return;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \alert{Procedura}: funzione senza tipo di output
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni}
+  \vfill
+  \begin{itemize}
+    \item Passaggio di parametri \alert{by value}
+    \begin{itemize}
+      \item \lstinline$int funzione(int)$
+      \item crea una copia degli argomenti della funzione
+      \item impossibile modificare gli argomenti
+      \item occupa più memoria, sconsigliato per molti dati
+    \end{itemize}
+    \vfill
+    \item Passaggio di parametri \alert{by reference}
+    \begin{itemize}
+      \item \lstinline$int funzione(int&)$
+      \item la funzione ha accesso diretto agli argomenti
+      \item necessario per certe applicazioni
+    \end{itemize}
   \end{itemize}
   \vfill
 \end{frame}
@@ -360,5 +404,49 @@ int main(){
       \item no input diretto (serve variabile di appoggio)
     \end{itemize}
   \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Operator overloading}
+  \vfill
+  \begin{lstlisting}
+#include <iostream>
+typedef signed char sshort;
+std::istream &operator>>(std::istream&,sshort&);
+std::ostream &operator<<(std::ostream&,sshort&);
+int main(){
+  sshort a;
+  std::cin >> a;
+  a += 5;
+  std::cout << a << std::endl;
+  return 0;
+}
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$typedef$ per evitare conflitti
+    \vfill
+    \item ridefiniamo \lstinline$>>$ e \lstinline$<<$ (\alert{overloading})
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Operator overloading}
+  \vfill
+  \begin{lstlisting}[firstnumber=11]
+...
+std::istream &operator>>(std::istream& input,
+                         sshort& x) {
+  int y;
+  input >> y;
+  x = y;
+  return input;
+}
+std::ostream &operator<<(std::ostream& output,
+                         sshort& x) {
+  output << static_cast<int>(x);
+  return output;
+}
+  \end{lstlisting}
   \vfill
 \end{frame}
