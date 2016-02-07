@@ -435,15 +435,13 @@ int main(){
   \vfill
   \begin{lstlisting}[firstnumber=11]
 ...
-std::istream& operator>>(std::istream& input,
-                         schar& x) {
+std::istream& operator>>(std::istream& input,schar& x) {
   int y;
   input >> y;
   x = y;
   return input;
 }
-std::ostream& operator<<(std::ostream& output,
-                         schar& x) {
+std::ostream& operator<<(std::ostream& output,schar& x) {
   output << static_cast<int>(x);
   return output;
 }
@@ -490,21 +488,283 @@ int main(){
   \vfill
 \end{frame}
 
-\begin{frame}[fragile]{Strutture}
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
   \vfill
   \begin{lstlisting}[firstnumber=2]
-class Rettangolo {
+class Rett {
   private:
     int b, h;
   public:
-    Rettangolo(int,int);
+    Rett();
+    Rett(int,int);
     int area();
     void draw();
 };
+...
   \end{lstlisting}
   \vfill
   \begin{itemize}
-    \item \lstinline$struct$ crea un nuovo tipo che contiene più variabili
+    \item \lstinline$private$ introduce membri inaccessibili dall'esterno
+    \vfill
+    \item \lstinline$public$ introduce membri accessibili dall'esterno
+    \vfill
+    \item Funzioni pubbliche possono alterare membri privati
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=2]
+class Rett {
+  private:
+    int b, h;
+  public:
+    Rett();
+    Rett(int,int);
+    int area();
+    void draw();
+};
+...
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \alert{Costruttori}: \lstinline$Rett()$ e \lstinline$Rett(int,int)$
+    \begin{itemize}
+      \item vengono invocati quando si dichiara l'oggetto
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=16]
+...
+Rett::Rett() { return; }
+Rett::Rett(int x, int y) {
+  this->b = x;
+  this->h = y;
+  return;
+}
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Implementazione dei costruttori
+    \begin{itemize}
+      \item all'esterno dell'oggetto
+      \item preceduti dal nome dell'oggetto
+    \end{itemize}
+    \vfill
+    \item \lstinline$this->$ indica che \lstinline$b$ e \lstinline$h$ sono membri
+    \begin{itemize}
+      \item si può omettere
+      \item rischio di conflitto con variabili/funzioni globali
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=22]
+...
+int Rett::area() {
+  return this->b*this->h;
+}
+void Rett::draw() {
+  for(int i = 0; i < this->h; i++) {
+    for(int j = 0; j < this->b; j++) {
+      std::cout << "*";
+    }
+    std::cout << std::endl;
+  }
+  return;
+}
+  \end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Implementazione delle altre funzioni
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=10]
+...
+int main(){
+  Rett a(8,3);
+  a.draw();
+  std::cout << "Area = " << a.area() << std::endl;
+  return 0;
+}
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$Rett a(8,3);$ chiama \lstinline$Rett(int,int)$
+    \item \lstinline$Rett a;$ chiama \lstinline$Rett()$
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=10]
+...
+int main(){
+  Rett a(8,3);
+  a.draw();
+  std::cout << "Area = " << a.b*a.h << std::endl;
+  return 0;
+}
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Errore: \lstinline$b$ e \lstinline$h$ sono privati
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=2]
+...
+class Rett {
+private:
+  int b, h;
+public:
+  Rett();
+  Rett(int,int);
+  int area();
+  void draw();
+  bool operator==(const Rett&) const;
+};
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Overload di \lstinline$==$ per la classe Rett
+    \vfill
+    \item \lstinline$const$ indica che non cambia l'oggetto
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=37]
+...
+bool Rett::operator==(const Rett& a) const{
+  bool eq = 0;
+  if (this->b == a.b && this->h == a.h) eq = 1;
+  if (this->b == a.h && this->h == a.b) eq = 1;
+  return eq;
+}
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Implementazione, all'esterno della classe
+    \vfill
+    \item Buona abitudine: passare gli argomenti by reference
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=2]
+...
+class Rett {
+private:
+  int b, h;
+public:
+  Rett();
+  Rett(int,int);
+  int area();
+  void draw();
+  friend bool operator==(const Rett&,const Rett&);
+};
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Alternativa: overload come operatore indipendente
+    \vfill
+    \item \lstinline$friend$ permette all'operatore di accedere a \lstinline$private$
+    \begin{itemize}
+      \item non importa dove viene scritto
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=37]
+...
+bool operator==(const Rett& a, const Rett& b) {
+  bool eq = 0;
+  if (a.b == b.b && a.h == b.h) eq = 1;
+  if (a.b == b.h && a.h == b.b) eq = 1;
+  return eq;
+}
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item L'operatore \alert{non} è un membro della classe
+    \begin{itemize}
+      \item per questo è necessario includerlo come \lstinline$friend$
+      \item spesso è preferibile avere operatori membro
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=2]
+...
+class Rett {
+  private:
+    int b, h;
+  public:
+    Rett();
+    Rett(int,int);
+    int area();
+    void draw();
+    Rett operator+(const Rett&) const;
+    Rett& operator+=(const Rett&);
+    bool operator==(const Rett&);
+};
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Overload di \lstinline$+$ e \lstinline$+=$
+    \begin{itemize}
+      \item \lstinline$+$ ha come output un oggetto
+      \item \lstinline$+=$ ha come output un riferimento all'oggetto
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=49]
+...
+Rett Rett::operator+(const Rett& a) const {
+  int b = this->b + a.b;
+  int h = this->h + a.h;
+  return Rett(b,h);
+}
+Rett& Rett::operator+=(const Rett& a) {
+  this->b = this->b + a.b;
+  this->h = this->h + a.h;
+  return *this;
+}
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Implementazione
   \end{itemize}
   \vfill
 \end{frame}
