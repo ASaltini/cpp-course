@@ -687,7 +687,7 @@ public:
 ...\end{lstlisting}
   \vfill
   \begin{itemize}
-    \item Alternativa: overload come operatore indipendente
+    \item Alternativa: overload come funzione \alert{libera}
     \vfill
     \item \lstinline$friend$ permette all'operatore di accedere a \lstinline$private$
     \begin{itemize}
@@ -731,8 +731,8 @@ class Rett {
     Rett(int,int);
     int area();
     void draw();
-    Rett operator+(const Rett&) const;
     Rett& operator+=(const Rett&);
+    Rett operator+(const Rett&) const;
     bool operator==(const Rett&);
 };
 ...\end{lstlisting}
@@ -751,20 +751,42 @@ class Rett {
   \vfill
   \begin{lstlisting}[firstnumber=49]
 ...
-Rett Rett::operator+(const Rett& a) const {
-  int b = this->b + a.b;
-  int h = this->h + a.h;
-  return Rett(b,h);
-}
 Rett& Rett::operator+=(const Rett& a) {
   this->b = this->b + a.b;
   this->h = this->h + a.h;
   return *this;
 }
+Rett Rett::operator+(const Rett& a) const {
+  int b = this->b + a.b;
+  int h = this->h + a.h;
+  return Rett(b,h);
+}
 ...\end{lstlisting}
   \vfill
   \begin{itemize}
     \item Implementazione
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{OOP -- Object Oriented Programming}
+  \vfill
+  \begin{lstlisting}[firstnumber=49]
+...
+Rett operator+(const Rett& a, const Rett& b){
+  Rett x = a;
+  x += b;
+  return (x);
+}
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item A volte conviene avere \lstinline$+$ come funzione libera
+    \begin{itemize}
+      \item più flessibile con conversioni
+    \end{itemize}
+    \vfill
+    \item Definita in termini di \lstinline$+=$, \alert{non} ha bisogno di \lstinline$friend$
   \end{itemize}
   \vfill
 \end{frame}
