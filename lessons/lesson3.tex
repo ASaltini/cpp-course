@@ -56,7 +56,6 @@ int main(){
   char a = 'A';
   std::cout << a << std::endl;
   std::cout << static_cast<int>(a) << std::endl;
-  std::cout << dynamic_cast<int>(a) << std::endl;
   return 0;
 }
   \end{lstlisting}
@@ -65,8 +64,7 @@ int main(){
     \item Conversione di dati da un tipo ad un altro
     \begin{itemize}
       \item \lstinline$static_cast$: più sicuro, più veloce
-      \item \lstinline$dynamic_cast$: più flessibile
-      \item differenze irrisorie sui tipi standard
+      \item esistono altre funzioni di cast
     \end{itemize}
   \end{itemize}
   \vfill
@@ -484,6 +482,9 @@ int main(){
     \item Una \alert{classe} definisce un \alert{tipo} di oggetto
     \vfill
     \item L'oggetto vero e proprio è una variabile
+    \begin{itemize}
+      \item \alert{istanza} della classe
+    \end{itemize}
   \end{itemize}
   \vfill
 \end{frame}
@@ -497,8 +498,8 @@ class Rett {
   public:
     Rett();
     Rett(int,int);
-    int area();
-    void draw();
+    int area() const;
+    void draw() const;
 };
 ...
   \end{lstlisting}
@@ -509,6 +510,8 @@ class Rett {
     \item \lstinline$public$ introduce membri accessibili dall'esterno
     \vfill
     \item Funzioni pubbliche possono alterare membri privati
+    \vfill
+    \item \lstinline$int area() const;$ non modifica l'oggetto
   \end{itemize}
   \vfill
 \end{frame}
@@ -522,8 +525,8 @@ class Rett {
   public:
     Rett();
     Rett(int,int);
-    int area();
-    void draw();
+    int area() const;
+    void draw() const;
 };
 ...
   \end{lstlisting}
@@ -569,10 +572,10 @@ Rett::Rett(int x, int y) {
   \vfill
   \begin{lstlisting}[firstnumber=22]
 ...
-int Rett::area() {
+int Rett::area() const{
   return this->b*this->h;
 }
-void Rett::draw() {
+void Rett::draw() const{
   for(int i = 0; i < this->h; i++) {
     for(int j = 0; j < this->b; j++) {
       std::cout << "*";
@@ -636,16 +639,14 @@ private:
 public:
   Rett();
   Rett(int,int);
-  int area();
-  void draw();
+  int area() const;
+  void draw() const;
   bool operator==(const Rett&) const;
 };
 ...\end{lstlisting}
   \vfill
   \begin{itemize}
     \item Overload di \lstinline$==$ per la classe Rett
-    \vfill
-    \item \lstinline$const$ indica che non cambia l'oggetto
   \end{itemize}
   \vfill
 \end{frame}
@@ -680,8 +681,8 @@ private:
 public:
   Rett();
   Rett(int,int);
-  int area();
-  void draw();
+  int area() const;
+  void draw() const;
   friend bool operator==(const Rett&,const Rett&);
 };
 ...\end{lstlisting}
@@ -729,8 +730,8 @@ class Rett {
   public:
     Rett();
     Rett(int,int);
-    int area();
-    void draw();
+    int area() const;
+    void draw() const;
     Rett& operator+=(const Rett&);
     Rett operator+(const Rett&) const;
     bool operator==(const Rett&);
@@ -771,7 +772,7 @@ Rett Rett::operator+(const Rett& a) const {
 
 \begin{frame}[fragile]{OOP -- Object Oriented Programming}
   \vfill
-  \begin{lstlisting}[firstnumber=49]
+  \begin{lstlisting}[firstnumber=54]
 ...
 Rett operator+(const Rett& a, const Rett& b){
   Rett x = a;

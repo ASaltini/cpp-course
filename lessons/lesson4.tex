@@ -1,0 +1,121 @@
+\begin{frame}[fragile]{Inheritance}
+  \vfill
+  \begin{lstlisting}[firstnumber=2]
+class Figura {
+protected:
+  int b, h;
+public:
+  Figura();
+  void set_data(int,int);
+};
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Classe di base con certe caratteristiche
+    \vfill
+    \item \lstinline$protected$, alternativa a \lstinline$private$/\lstinline$public$
+    \begin{itemize}
+      \item membri \lstinline$protected$ sono inaccessibili dall'esterno
+      \item possono essere \alert{ereditati}
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Inheritance}
+  \vfill
+  \begin{lstlisting}[firstnumber=13]
+...
+Figura::Figura() { return; }
+void Figura::set_data(int b, int h) {
+  this->b = b;
+  this->h = h;
+  return;
+}
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Implementazione delle funzioni
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Inheritance}
+  \vfill
+  \begin{lstlisting}[firstnumber=8]
+...
+class Rett : public Figura {
+public:
+  Rett();
+  int area() const;
+};
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Classe \alert{derivata}
+    \begin{itemize}
+      \item eredita tutti i membri \lstinline$public$ o \lstinline$protected$
+      \item i membri \lstinline$private$ non vengono ereditati
+    \end{itemize}
+    \vfill
+    \item I costruttori devono essere ridefiniti
+    \begin{itemize}
+      \item il nome del vecchio costruttore è diverso
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Inheritance}
+  \vfill
+  \begin{lstlisting}[firstnumber=19]
+...
+Rett::Rett() { return; }
+int Rett::area() const{
+  return this->b*this->h;
+}
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Implementazione delle funzioni
+    \vfill
+    \item Non è necessario reimplementare \lstinline$set_data$
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Inheritance}
+  \vfill
+  \begin{lstlisting}[firstnumber=23]
+...
+int main() {
+  Rett a;
+  a.set_data(3,5);
+  std::cout << "Area = " << a.area() << std::endl;
+  return 0;
+}
+...\end{lstlisting}
+  \vfill
+  \begin{itemize}
+    \item Utilizzo nel programma
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Inheritance}
+  \vfill
+  \begin{itemize}
+    \item Una classe può ereditare da più fonti
+    \begin{itemize}
+      \item \lstinline$class Derivata : public Fonte1, public Fonte2$
+    \end{itemize}
+    \vfill
+    \item Una classe può modificare gli accessi durante l'eredità
+    \begin{itemize}
+      \item \lstinline$class Derivata : public Fonte$
+      \item \lstinline$class Derivata : protected Fonte$
+      \item \lstinline$class Derivata : private Fonte$
+    \end{itemize}
+  \end{itemize}
+  \vfill
+\end{frame}
