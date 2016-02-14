@@ -408,13 +408,12 @@ int main(){
 #ifndef TASSONI2016
 #define TASSONI2016
 int twice(int);
-#endif
-  \end{lstlisting}
+#endif\end{lstlisting}
   \vfill
     \item \lstinline$myheader.cpp$:
   \begin{lstlisting}
-int twice(int x) { return 2*x; }
-  \end{lstlisting}
+#include "myheader.hpp"
+int twice(int x) { return 2*x; }\end{lstlisting}
   \vfill
     \item \lstinline$project.hpp$:
     \begin{lstlisting}
@@ -422,8 +421,7 @@ int twice(int x) { return 2*x; }
 #include "myheader.hpp"
 int main() {
   std::cout << twice(5) << std::endl;
-}
-  \end{lstlisting}
+}\end{lstlisting}
   \end{itemize}
   \vfill
 \end{frame}
@@ -442,6 +440,57 @@ int main() {
     se è già stato incluso tramite un altro header
     \vfill
     \item Ogni header dovrebbe avere la propria etichetta
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Progetti}
+  \vfill
+  \begin{itemize}
+    \item \lstinline$myheader.hpp$:
+  \begin{lstlisting}
+#ifndef TASSONI2016
+#define TASSONI2016
+namespace tassoni {
+  int twice(int);
+}
+#endif\end{lstlisting}
+  \vfill
+    \item \lstinline$myheader.cpp$:
+  \begin{lstlisting}
+#include "myheader.hpp"
+int tassoni::twice(int x) { return 2*x; }\end{lstlisting}
+  \vfill
+    \item \lstinline$project.hpp$:
+    \begin{lstlisting}
+#include <iostream>
+#include "myheader.hpp"
+int main() {
+  std::cout << tassoni::twice(5) << std::endl;
+}\end{lstlisting}
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Progetti}
+  \vfill
+  \begin{itemize}
+    \item Namespace aumentano la flessibilità del codice
+    \begin{itemize}
+      \item più facile riutilizzare il codice senza conflitti
+    \end{itemize}
+    \vfill
+    \item Più namespace possono essere concatenati
+    \begin{itemize}
+      \item funzione \lstinline$tassoni::uno::twice(x)$
+    \end{itemize}
+    \begin{lstlisting}[firstnumber=3]
+namespace tassoni {
+  namespace uno {
+    int twice(int);
+  }
+}
+  \end{lstlisting}
   \end{itemize}
   \vfill
 \end{frame}
